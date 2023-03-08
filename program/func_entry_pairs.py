@@ -33,6 +33,7 @@ def open_positions(client):
         open_positions_dict = json.load(open_positions_file)
         for p in open_positions_dict:
             bot_agents.append(p)
+            pprint(bot_agents)
     except:
         bot_agents = []
 
@@ -138,15 +139,15 @@ def open_positions(client):
                         if bot_open_dict["pair_status"] == "LIVE":
                             # Append to list of bot agents
                             bot_agents.append(bot_open_dict)
-                            del (bot_open_dict)
+                            del bot_open_dict
 
                             # Confirm live status in print
                             print("Trade status: Live")
                             print("---")
 
     # Save agents
-    # print(f"Success: Manage open trades checked")
-    print(f"Success:{len(bot_agents)} New Pairs LIVE")
+    print(f"Success: Manage open trades checked")
+    # print(f"Success:{len(bot_agents)} New Pairs LIVE")
     if len(bot_agents) > 0:
         with open("bot_agents.json", "w") as f:
             json.dump(bot_agents, f)
